@@ -34,3 +34,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+#Misc folder to store random assets that does not need to go into source control
+Misc/
