@@ -13,6 +13,6 @@ private int level = 3;
 	}
 
 	void InitGame() {
-		
+		boardScript.SetupScene(level);
 	}
 }
