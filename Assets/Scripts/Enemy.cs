@@ -12,6 +12,7 @@ public class Enemy : MovementBase
 
     protected override void Start()
     {
+        GameManager.instance.AddEnemiesToList(this);
         animator = GetComponent<Animator>();
         target = GameObject.FindGameObjectWithTag("Player").transform;
         base.Start();
@@ -40,7 +41,7 @@ public class Enemy : MovementBase
         }
         else
         {
-            xDir = target.position.x > target.position.x ? 1 : -1;
+            xDir = target.position.x > transform.position.x ? 1 : -1;
         }
 
         AttemptMove<Player>(xDir, yDir);
@@ -49,6 +50,8 @@ public class Enemy : MovementBase
     protected override void OnCantMove<T>(T component)
     {
         Player hitPlayer = component as Player;
+
+        animator.SetTrigger("enemyAttack");
 
         hitPlayer.LoseFood(playerDamage);
     }
