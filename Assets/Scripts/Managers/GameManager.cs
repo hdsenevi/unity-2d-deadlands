@@ -2,26 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
-	public static GameManager instance = null;
+public class GameManager : MonoBehaviour
+{
+    public static GameManager instance = null;
+    public BoardManager boardScript;
+    public int playerFoodPoints = 100;
+    [HideInInspector]
+    public bool playerTurn = true;
 
-	public BoardManager boardScript;
-	private int level = 3;
+    private int level = 3;
 
-	void Awake () {
-		if (instance == null) {
-			instance = this;
-		} else if (instance != this) {
-			Destroy(gameObject);
-		}
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
 
-		DontDestroyOnLoad(gameObject);
-		boardScript = GetComponent<BoardManager>();
-		InitGame();
-	}
+        DontDestroyOnLoad(gameObject);
+        boardScript = GetComponent<BoardManager>();
+        InitGame();
+    }
 
-	void InitGame() {
-		boardScript.SetupScene(level);
-	}
+    void InitGame()
+    {
+        boardScript.SetupScene(level);
+    }
 
+    public void GameOver()
+    {
+        enabled = false;
+    }
 }
