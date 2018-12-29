@@ -37,3 +37,6 @@ sysinfo.txt
 
 #Misc folder to store random assets that does not need to go into source control
 Misc/
+
+*.psd
+*.psd.meta
